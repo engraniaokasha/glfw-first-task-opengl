@@ -13,7 +13,7 @@ float x = 0.;
 float y = 0.;
 float a = 0.;
 void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods);
-void drawTriangle();
+void drawcircle();
 int main() {
 	GLFWwindow *window;
 	//initilize library
@@ -22,7 +22,7 @@ int main() {
 		return -1;
 	}
 	//Create Window
-	window = glfwCreateWindow(screenWidth, screenHieght, "first project with glfw", NULL, NULL);
+	window = glfwCreateWindow(screenWidth, screenHieght, "<<first project with glfw >>", NULL, NULL);
 	if (!window)
 	{
 		cout << "Can't render the window ";
@@ -41,10 +41,9 @@ int main() {
 		glClearColor(0.2f, 0.2f, 0.4f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 		glPushMatrix();
-		//glColor3f(.5, 0.1, .1);
 		glTranslatef(x, y, 0);
 		glRotatef(angle, 0, 0, 1);
-		drawTriangle();
+		drawcircle();
 		glPopMatrix();
 
 		glfwSetKeyCallback(window, keyCallback);
@@ -59,13 +58,8 @@ int main() {
 }
 
 
-void drawTriangle() {
-	/*glBegin(GL_TRIANGLES);
-	//Triangle
-	glVertex3f(0.f, 0.0f, 0.0f);
-	glVertex3f(0.5f, 0.0f, 0.0f);
-	glVertex3f(0.3f, 0.5f, 0.0f);
-	glEnd();*/
+void drawcircle() {
+	
 	glBegin(GL_POLYGON);
 	for (int i = 0; i < 360; i++)
 	{
@@ -86,30 +80,6 @@ void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods
 	case GLFW_KEY_DOWN: // move down
 		y -= step;
 		break;
-	case GLFW_KEY_HOME: // to rotate clockwise
-		angle += 2.0f;
-		if (angle > 360)
-			angle -= 360;
-		cout << angle;
-
-
-		break;
-	case GLFW_KEY_END: // to rotate anti clockwise
-		angle -= 2.0f;
-		if (angle < 360)
-			angle += 360;
-		cout << angle;
-
-		break;
-	case GLFW_KEY_PAGE_UP:  //expand
-		scale += .5;
-
-		break;
-
-	case GLFW_KEY_PAGE_DOWN: //shrink
-		scale -= .5;
-		break;
-	default:
-		break;
+	
 	}
 }
